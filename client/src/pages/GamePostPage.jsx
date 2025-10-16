@@ -342,7 +342,6 @@ export default function GamePostPage() {
                     <Typography variant="caption" sx={{ color: "gray" }}>
                       {new Date(review.createdAt).toLocaleString()}
                     </Typography>
-
                     <Typography variant="h6" sx={{ mt: 1, color: "#00f0ff" }}>
                       {review.title}
                     </Typography>
@@ -352,15 +351,10 @@ export default function GamePostPage() {
                     >
                       {review.content}
                     </Typography>
-
                     {review.image && (
                       <CardMedia
                         component="img"
-                        image={
-                          review.image.startsWith("http")
-                            ? review.image
-                            : `${API_URL}api/uploads/${review.image}`
-                        }
+                        image={review.image}
                         alt="review-img"
                         sx={{
                           borderRadius: 2,
@@ -370,7 +364,7 @@ export default function GamePostPage() {
                         }}
                       />
                     )}
-
+                    // ..
                     <Divider
                       sx={{ my: 1, borderColor: "rgba(0,240,255,0.08)" }}
                     />
@@ -383,7 +377,6 @@ export default function GamePostPage() {
                     >
                       💬 View Comments ({review.commentCount || 0})
                     </Button>
-
                     <Rating
                       value={review.rating}
                       precision={0.5}
