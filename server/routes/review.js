@@ -77,23 +77,27 @@ router.get("/", async (req, res) => {
 });
 
 // GET /reviews/:id
-router.get("/:id", async (req, res) => {
+// Get all reviews for a specific game
+router.get("/:id/reviews", async (req, res) => {
   try {
-    const review = await getReviewById(req.params.id);
-    if (!review) return res.status(404).json({ message: "Review not found" });
+    const reviews = await Review.find({ game: req.params.id })
+      .populate("user", "name role") // include user info
+      .sort({ createdAt: -1 });
 
-    const reviewWithFullImage = {
+    // Format image URLs properly
+    const formattedReviews = reviews.map((review) => ({
       ...review._doc,
       image: review.image
-        ? `${req.protocol}://${req.get("host")}${review.image}`
+        ? `${req.protocol}://${req.get("host")}/api/uploads/${review.image}`
         : null,
-    };
+    }));
 
-    res.status(200).json(reviewWithFullImage);
+    res.status(200).json(formattedReviews);
   } catch (err) {
+    console.error(err);
     res
       .status(500)
-      .json({ message: "Error fetching review", error: err.message });
+      .json({ message: "Error fetching reviews", error: err.message });
   }
 });
 
