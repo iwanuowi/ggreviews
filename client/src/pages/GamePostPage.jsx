@@ -356,7 +356,14 @@ export default function GamePostPage() {
                     {review.image && (
                       <CardMedia
                         component="img"
-                        image={review.image}
+                        image={
+                          review.image.startsWith("http")
+                            ? review.image
+                            : `${API_URL}uploads/${review.image}`.replace(
+                                "/uploads/",
+                                "/api/uploads/"
+                              )
+                        }
                         alt="review-img"
                         sx={{
                           borderRadius: 2,

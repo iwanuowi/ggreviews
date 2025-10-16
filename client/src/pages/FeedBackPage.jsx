@@ -108,11 +108,11 @@ export default function FeedbackPage() {
       }
     } catch (err) {
       console.error("Delete failed:", err);
-      Swal.fire({
-        icon: "error",
-        title: "Deletion Failed",
-        text: err.error || "Please try again.",
-      });
+      // Swal.fire({
+      //   icon: "error",
+      //   title: "Deletion Failed",
+      //   text: err.error || "Please try again.",
+      // });
     }
   };
 
