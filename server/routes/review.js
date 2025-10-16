@@ -81,12 +81,14 @@ router.get("/:id", async (req, res) => {
   try {
     const review = await getReviewById(req.params.id);
     if (!review) return res.status(404).json({ message: "Review not found" });
+
     const reviewWithFullImage = {
       ...review._doc,
       image: review.image
-        ? `${req.protocol}://${req.get("host")}/api${review.image}`
+        ? `${req.protocol}://${req.get("host")}${review.image}`
         : null,
     };
+
     res.status(200).json(reviewWithFullImage);
   } catch (err) {
     res
@@ -159,29 +161,6 @@ router.delete("/:id", isValidUser, async (req, res) => {
     res
       .status(500)
       .json({ message: "Error deleting review", error: err.message });
-  }
-});
-// Get all reviews for a specific game
-router.get("/:id/reviews", async (req, res) => {
-  try {
-    const Review = require("../models/Review");
-    const reviews = await Review.find({ game: req.params.id })
-      .populate("user", "name role")
-      .sort({ createdAt: -1 });
-
-    const cleanedReviews = reviews.map((review) => ({
-      ...review._doc,
-      image: review.image
-        ? `${req.protocol}://${req.get("host")}${review.image}`
-        : null,
-    }));
-
-    res.status(200).json(cleanedReviews);
-  } catch (err) {
-    console.error("Error fetching reviews:", err);
-    res
-      .status(500)
-      .json({ message: "Error fetching reviews", error: err.message });
   }
 });
 
