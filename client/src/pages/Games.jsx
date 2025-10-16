@@ -18,6 +18,7 @@ import { getGenres } from "../utils/api_genre";
 import { getGames, likeGame } from "../utils/api_games";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { API_URL } from "../utils/constants";
 
 import { Whatshot, WhatshotOutlined } from "@mui/icons-material";
 
