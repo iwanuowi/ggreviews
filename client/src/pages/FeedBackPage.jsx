@@ -29,15 +29,6 @@ export default function FeedbackPage() {
     const storedUser = localStorage.getItem("user");
     if (storedUser) setCurrentUser(JSON.parse(storedUser));
 
-    // const fetchAllFeedbacks = async () => {
-    //   try {
-    //     const data = await getFeedbacks();
-    //     setFeedbacks(data);
-    //   } catch (err) {
-    //     console.error("Error fetching feedbacks:", err);
-    //   }
-    // };
-
     const fetchAllFeedbacks = async () => {
       try {
         const data = await getFeedbacks();
@@ -46,13 +37,6 @@ export default function FeedbackPage() {
         console.error("Error fetching feedbacks:", err);
       }
     };
-
-    useEffect(() => {
-      const storedUser = localStorage.getItem("user");
-      if (storedUser) setCurrentUser(JSON.parse(storedUser));
-
-      fetchAllFeedbacks(); // call it here on mount
-    }, []);
 
     fetchAllFeedbacks();
   }, []);
@@ -89,13 +73,6 @@ export default function FeedbackPage() {
       fetchAllFeedbacks();
     } catch (err) {
       console.error("Error submitting feedback:", err);
-      Swal.fire({
-        icon: "error",
-        title: "Submission Failed",
-        text: err.response?.data?.error || "Please try again.",
-        background: "#1a1a1a",
-        color: "white",
-      });
     } finally {
       setLoading(false);
     }
