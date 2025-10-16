@@ -122,7 +122,7 @@ export default function Games() {
               filter: "drop-shadow(0 0 6px #00f0ff)",
             }}
           >
-            GG Reviewssz
+            GG Reviewers
           </Typography>
           <Typography
             sx={{
@@ -144,7 +144,7 @@ export default function Games() {
               },
             }}
           >
-            GG Reviewssz
+            GG Reviewers
           </Typography>
         </Box>
 
