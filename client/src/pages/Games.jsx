@@ -123,7 +123,7 @@ export default function Games() {
               filter: "drop-shadow(0 0 6px #00f0ff)",
             }}
           >
-            GG Reviews
+            GG Review
           </Typography>
           <Typography
             sx={{
@@ -145,7 +145,7 @@ export default function Games() {
               },
             }}
           >
-            GG Reviews
+            GG Review
           </Typography>
         </Box>
 
@@ -393,7 +393,11 @@ export default function Games() {
                           borderTopLeftRadius: "20px",
                           borderTopRightRadius: "20px",
                         }}
-                        image={`${API_URL}uploads/${game.image}`}
+                        image={
+                          game.image?.startsWith("http")
+                            ? game.image
+                            : `${API_URL}uploads/${game.image}`
+                        }
                         alt={game.title}
                       />
                     )}
