@@ -29,6 +29,15 @@ export default function FeedbackPage() {
     const storedUser = localStorage.getItem("user");
     if (storedUser) setCurrentUser(JSON.parse(storedUser));
 
+    // const fetchAllFeedbacks = async () => {
+    //   try {
+    //     const data = await getFeedbacks();
+    //     setFeedbacks(data);
+    //   } catch (err) {
+    //     console.error("Error fetching feedbacks:", err);
+    //   }
+    // };
+
     const fetchAllFeedbacks = async () => {
       try {
         const data = await getFeedbacks();
@@ -37,6 +46,13 @@ export default function FeedbackPage() {
         console.error("Error fetching feedbacks:", err);
       }
     };
+
+    useEffect(() => {
+      const storedUser = localStorage.getItem("user");
+      if (storedUser) setCurrentUser(JSON.parse(storedUser));
+
+      fetchAllFeedbacks(); // call it here on mount
+    }, []);
 
     fetchAllFeedbacks();
   }, []);

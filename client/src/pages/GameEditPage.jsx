@@ -221,7 +221,11 @@ export default function GameEditPage() {
             <Box sx={{ position: "relative" }}>
               <img
                 src={
-                  typeof image === "string" ? image : URL.createObjectURL(image)
+                  typeof image === "string"
+                    ? image.startsWith("http")
+                      ? image
+                      : `${API_URL}uploads/${image.replace(/^\/uploads\//, "")}`
+                    : URL.createObjectURL(image)
                 }
                 alt="Preview"
                 style={{
