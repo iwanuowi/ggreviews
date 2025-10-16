@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 // Static uploads
+app.use("/uploads", express.static("uploads"));
 app.use("/api/uploads", express.static("uploads"));
 
 // MongoDB
