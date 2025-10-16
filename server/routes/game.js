@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
     const cleanedGames = games.map((game) => ({
       ...game._doc,
       image: game.image
-        ? `${req.protocol}://${req.get("host")}${game.image}`
+        ? `${req.protocol}://${req.get("host")}/api${game.image}`
         : null,
     }));
 
