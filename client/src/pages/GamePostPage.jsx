@@ -244,7 +244,11 @@ export default function GamePostPage() {
               <CardMedia
                 component="img"
                 height="400"
-                image={game.image}
+                image={
+                  game.image?.startsWith("http")
+                    ? game.image
+                    : `${API_URL}uploads/${game.image}`
+                }
                 alt={game.title}
                 sx={{
                   objectFit: "cover",
