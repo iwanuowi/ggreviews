@@ -38,13 +38,6 @@ export default function FeedbackPage() {
       }
     };
 
-    useEffect(() => {
-      const storedUser = localStorage.getItem("user");
-      if (storedUser) setCurrentUser(JSON.parse(storedUser));
-
-      fetchAllFeedbacks();
-    }, []);
-
     fetchAllFeedbacks();
   }, []);
 
