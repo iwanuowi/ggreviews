@@ -4,7 +4,7 @@ import { API_URL } from "./constants";
 // Get all games
 export const getGames = async () => {
   try {
-    const res = await axios.get(`${API_URL}/games`);
+    const res = await axios.get(`${API_URL}games`);
     return res.data;
   } catch (err) {
     throw err.response?.data || err;
@@ -14,7 +14,7 @@ export const getGames = async () => {
 // Get single game
 export const getGame = async (id) => {
   try {
-    const res = await axios.get(`${API_URL}/games/${id}`);
+    const res = await axios.get(`${API_URL}games/${id}`);
     return res.data;
   } catch (err) {
     throw err.response?.data || err;
@@ -24,7 +24,7 @@ export const getGame = async (id) => {
 // Add a new game
 export const addGame = async (gameData, token) => {
   try {
-    const res = await axios.post(`${API_URL}/games`, gameData, {
+    const res = await axios.post(`${API_URL}games`, gameData, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "multipart/form-data",
@@ -39,7 +39,7 @@ export const addGame = async (gameData, token) => {
 // Update a game
 export const updateGame = async (id, gameData, token) => {
   try {
-    const res = await axios.put(`${API_URL}/games/${id}`, gameData, {
+    const res = await axios.put(`${API_URL}games/${id}`, gameData, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "multipart/form-data",
@@ -54,7 +54,7 @@ export const updateGame = async (id, gameData, token) => {
 // Delete a game
 export const deleteGame = async (id, token) => {
   try {
-    const res = await axios.delete(`${API_URL}/games/${id}`, {
+    const res = await axios.delete(`${API_URL}games/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
@@ -70,7 +70,7 @@ export const likeGame = async (gameId) => {
     const token = localStorage.getItem("token");
 
     const response = await axios.post(
-      `${API_URL}/games/${gameId}/like`,
+      `${API_URL}games/${gameId}/like`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
