@@ -392,7 +392,7 @@ export default function Games() {
                           borderTopLeftRadius: "20px",
                           borderTopRightRadius: "20px",
                         }}
-                        image={game.image}
+                        image={`${API_URL}uploads/${game.image}`}
                         alt={game.title}
                       />
                     )}
