@@ -15,7 +15,7 @@ app.use("/api/uploads", express.static("uploads"));
 // MongoDB
 async function connectToMongoDB() {
   try {
-    await mongoose.connect("mongodb://localhost:27017/ggreviews");
+    await mongoose.connect(process.env.MONGODB_URL + "/ggreviews");
     console.log("MongoDB Connected");
   } catch (error) {
     console.error(" MongoDB connection failed:", error);
@@ -23,13 +23,13 @@ async function connectToMongoDB() {
 }
 
 // Routes
-app.use("/api//users", require("./routes/user")); // signup/login
-app.use("/api//games", require("./routes/game")); // games CRUD
-app.use("/api//games/:gameId/reviews", require("./routes/review")); // nested reviews
-app.use("/api//reviews", require("./routes/review"));
-app.use("/api//comments", require("./routes/comment"));
-app.use("/api//genres", require("./routes/genre"));
-app.use("/api//feedbacks", require("./routes/feedback"));
+app.use("/api/users", require("./routes/user")); // signup/login
+app.use("/api/games", require("./routes/game")); // games CRUD
+app.use("/api/games/:gameId/reviews", require("./routes/review")); // nested reviews
+app.use("/api/reviews", require("./routes/review"));
+app.use("/api/comments", require("./routes/comment"));
+app.use("/api/genres", require("./routes/genre"));
+app.use("/api/feedbacks", require("./routes/feedback"));
 
 // Default route
 app.get("/api/", (req, res) => {
