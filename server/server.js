@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-
+const path = require("path");
 const app = express();
 
 // Middleware
@@ -10,8 +10,10 @@ app.use(express.json());
 app.use(cors());
 
 // Static uploads
-app.use("/uploads", express.static("uploads"));
-app.use("/api/uploads", express.static("uploads"));
+// app.use("/uploads", express.static("uploads"));
+// app.use("/api/uploads", express.static("uploads"));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/api/uploads", express.static(path.join(__dirname, "uploads")));
 
 // MongoDB
 async function connectToMongoDB() {
