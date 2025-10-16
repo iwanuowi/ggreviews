@@ -81,14 +81,12 @@ router.get("/:id", async (req, res) => {
   try {
     const review = await getReviewById(req.params.id);
     if (!review) return res.status(404).json({ message: "Review not found" });
-
     const reviewWithFullImage = {
       ...review._doc,
       image: review.image
-        ? `${req.protocol}://${req.get("host")}${review.image}`
+        ? `${req.protocol}://${req.get("host")}/api${review.image}`
         : null,
     };
-
     res.status(200).json(reviewWithFullImage);
   } catch (err) {
     res
