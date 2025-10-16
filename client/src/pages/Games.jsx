@@ -18,7 +18,6 @@ import { getGenres } from "../utils/api_genre";
 import { getGames, likeGame } from "../utils/api_games";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import { API_URL } from "../utils/constants";
 
 import { Whatshot, WhatshotOutlined } from "@mui/icons-material";
 
@@ -393,7 +392,7 @@ export default function Games() {
                           borderTopLeftRadius: "20px",
                           borderTopRightRadius: "20px",
                         }}
-                        image={`${API_URL}uploads/${game.image}`}
+                        image={game.image}
                         alt={game.title}
                       />
                     )}
