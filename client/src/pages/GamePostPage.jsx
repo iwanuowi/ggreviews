@@ -359,6 +359,8 @@ export default function GamePostPage() {
                         image={
                           review.image?.startsWith("http")
                             ? review.image
+                            : review.image?.includes("/uploads/")
+                            ? `${API_URL}${review.image.replace(/^\/+/, "")}`
                             : `${API_URL}uploads/${review.image}`
                         }
                         alt="review-img"
